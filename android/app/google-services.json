@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208488402967",
+    "project_id": "sakugaa",
+    "storage_bucket": "sakugaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208488402967:android:42c91442acda45dc158c52",
+        "android_client_info": {
+          "package_name": "com.company.sakugaacaptors"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB6C7mxs5VWiI2NMrH5T0bOmM8d2VTQF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
