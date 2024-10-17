@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -13,15 +14,10 @@ class HistoryPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         foregroundColor: Colors.transparent,
       ),
-      body: const Column(
-        children: [
-          Row(
-            children: [
-              Card(
-              )
-            ],
-          )
-        ],
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: CupertinoSearchTextField(
+        ),
       ),
     );
 
