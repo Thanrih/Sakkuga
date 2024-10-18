@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/assets/my_button.dart';
 import 'package:sakugaacaptors/assets/my_textfield.dart';
 import 'package:sakugaacaptors/pages/login.dart';
-import '../main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -113,6 +112,11 @@ class RegisterPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(color: Colors.white),
+      foregroundColor: Colors.transparent,
+    ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

@@ -66,24 +66,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   return CarouselSlider(
                     items: dataList.map((data) {
-                      return Stack(
-                        children: [
-                          CarousselImage(
-                            imageUrl: data['ImageUrl'],
-                            title: '',
-                            textSize: 0,
-                            desc: '',
-                            id: data['id'],
-                          ),
-                        ],
+                      return LayoutBuilder(
+                        builder: (context, constraints) {
+                          final double imageHeight = constraints.maxWidth * 0.6; // Definindo a altura como 60% da largura
+
+                          return Stack(
+                            children: [
+                              CarousselImage(
+                                imageUrl: data['ImageUrl'],
+                                title: '',
+                                textSize: 0,
+                                desc: '',
+                                id: data['id'],
+                              ),
+                            ],
+                          );
+                        },
                       );
                     }).toList(),
                     options: CarouselOptions(
-                      // Suas opções do Carousel
+                      enlargeStrategy: CenterPageEnlargeStrategy.height,
                       autoPlay: true,
                       autoPlayCurve: Curves.fastOutSlowIn,
                       autoPlayAnimationDuration: const Duration(milliseconds: 500),
-                      height: 400,
+                      height: MediaQuery.of(context).size.height * 0.4, // Definindo a altura com base na tela
                       viewportFraction: 1,
                       initialPage: 0,
                       enableInfiniteScroll: true,
