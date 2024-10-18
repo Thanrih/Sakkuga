@@ -15,12 +15,11 @@ class ConfigPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-
           children: [
             const SizedBox(height: 20),
             const CircleAvatar(
               radius: 40,
-              backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/pt/9/98/Vagabond1.jpg',scale:1.5),
+              backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/pt/9/98/Vagabond1.jpg', scale: 1.5),
             ),
             const SizedBox(height: 10),
             const Text(
@@ -52,10 +51,11 @@ class ConfigPage extends StatelessWidget {
                 // Ação ao tocar na opção
               },
             ),
-            Expanded(child: Divider(
+            const SizedBox(height: 10),
+            const Divider(
               thickness: 0.5,
-              color: Colors.grey[400],
-            )),
+              color: Colors.grey,
+            ),
             ListTile(
               title: const Text('Linguagem', style: TextStyle(color: Colors.white)),
               onTap: () {

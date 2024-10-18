@@ -3,10 +3,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/assets/my_button.dart';
-import 'package:sakugaacaptors/pages/history.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
-import 'package:sakugaacaptors/pages/saved.dart';
-import 'package:sakugaacaptors/pages/settings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -20,18 +16,10 @@ class ObraDescPage extends StatefulWidget {
 
 class _ObraDescPageState extends State<ObraDescPage> {
   late Future<Map<String, dynamic>?> _future;
-  final List<Widget> _pages = [
-    const MyHomePage(),
-    const HistoryPage(),
-    const SavedPage(),
-    const ConfigPage(),
-  ];
 
   @override
   void initState() {
     super.initState();
-
-    // The id will be initialized in the build method
   }
 
   Future<Map<String, dynamic>?> _fetchImageUrl(String id) async {
@@ -76,15 +64,17 @@ class _ObraDescPageState extends State<ObraDescPage> {
 
           return Stack(
             children: [
-              // Imagem de fundo
+              // Imagem de fundo responsiva
               if (imageUrl != null)
-
-                Positioned.directional(top: 0,
-                  textDirection: TextDirection.ltr,
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
                   height: 260,
                   child: Image.network(
                     imageUrl,
                     fit: BoxFit.cover,
+                    width: double.infinity,
                   ),
                 ),
               Container(
@@ -110,8 +100,8 @@ class _ObraDescPageState extends State<ObraDescPage> {
                       Column(
                         children: [
                           Container(
-                            width: 150,
-                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.height * 0.3,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -120,6 +110,8 @@ class _ObraDescPageState extends State<ObraDescPage> {
                               child: Image.network(
                                 imageUrl,
                                 fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: double.infinity,
                               ),
                             ),
                           ),
@@ -159,14 +151,14 @@ class _ObraDescPageState extends State<ObraDescPage> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                           child: SizedBox(
-                            width: 350,
-                            height: 170,
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: 200,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Text(
                                 obraDesc,
                                 style: const TextStyle(color: Colors.grey, fontSize: 14.0),
-                                textAlign: TextAlign.justify,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),

@@ -26,6 +26,7 @@ class _CapsState extends State<Caps> {
         .eq('id', id)
     ;
 
+    // ignore: unnecessary_null_comparison
     if (response == null) {
       throw response;
     }
