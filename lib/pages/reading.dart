@@ -38,10 +38,13 @@ class _ReadingPageState extends State<ReadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.black),
-        foregroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent, // Deixa a cor de fundo transparente
+        elevation: 0, // Remove a sombra da AppBar
+        iconTheme: const IconThemeData(color: Colors.white), // Define a cor dos ícones
+        toolbarOpacity: 1, // Define a opacidade da AppBar
       ),
+      extendBodyBehindAppBar: true, // Permite que o corpo da página se estenda
+
       body: FutureBuilder<List<String>>(
         future: _futureImages,
         builder: (context, snapshot) {
@@ -61,10 +64,12 @@ class _ReadingPageState extends State<ReadingPage> {
               itemCount: imageUrls.length,
               itemBuilder: (context, index) {
                 final imageUrl = imageUrls[index];
-                return ListTile(
-                  minVerticalPadding: 0,
-                  horizontalTitleGap: 0,
-                  title: Image.network(imageUrl),
+                return Container(
+                  width: double.infinity, // Largura total da tela
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover, // Faz a imagem cobrir toda a largura
+                  ),
                 );
               },
             ),
