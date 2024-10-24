@@ -165,7 +165,7 @@ class RegisterPage extends StatelessWidget {
                   onTap: userSignIn,
                   buttonText: 'Finalizar',
                   width: 150,
-                  height: 70,
+                  height: 50,
                   colorAway: Colors.white,
                   colorPressed: Colors.black,
                   borderColorAway: Colors.black,
