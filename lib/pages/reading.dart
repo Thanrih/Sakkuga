@@ -34,6 +34,7 @@ class _ReadingPageState extends State<ReadingPage> {
     return pageUrls.cast<String>();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +65,7 @@ class _ReadingPageState extends State<ReadingPage> {
               itemCount: imageUrls.length,
               itemBuilder: (context, index) {
                 final imageUrl = imageUrls[index];
-                return Container(
+                return SizedBox(
                   width: double.infinity, // Largura total da tela
                   child: Image.network(
                     imageUrl,

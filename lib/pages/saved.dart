@@ -72,7 +72,8 @@ class _SavedPageState extends State<SavedPage> {
 
                     return SingleChildScrollView(
                       child: Container(
-                        alignment: Alignment.topLeft, // Alinha os itens ao início
+                        alignment: Alignment.topLeft,
+                        padding: const EdgeInsets.all(8.0),
                         child: Wrap(
                           spacing: spacing, // Espaçamento horizontal entre os itens
                           runSpacing: 8.0, // Espaçamento vertical entre as linhas

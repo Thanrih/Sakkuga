@@ -17,6 +17,18 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Verifica se o usuário já está logado
+    final user = supabase.auth.currentUser ;
+    if (user != null) {
+      // Se o usuário já estiver logado, redireciona para a tela principal
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MyApp()),
+        );
+      });
+    }
+
     void userSignIn() async {
       final email = emailController.text;
       final password = passwordController.text;
@@ -40,7 +52,6 @@ class LoginPage extends StatelessWidget {
           builder: (BuildContext context) {
             return const CupertinoAlertDialog(
               title: Text('O campo de senha não pode estar vazio.'),
-
             );
           },
         );
@@ -54,7 +65,7 @@ class LoginPage extends StatelessWidget {
           email: emailController.text,
         );
         // Se o login for bem-sucedido, redireciona para a tela principal
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MyApp()),
         );
@@ -132,7 +143,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 MyButton(
                   onTap: userSignIn,
-                  buttonText: 'Login',
+                  buttonText: ' Login',
                   width: 150,
                   height: 70,
                   colorAway: Colors.white,
