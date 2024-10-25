@@ -68,8 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     items: dataList.map((data) {
                       return LayoutBuilder(
                         builder: (context, constraints) {
-                          final double imageHeight = constraints.maxWidth * 0.6; // Definindo a altura como 60% da largura
-
                           return Stack(
                             children: [
                               CarousselImage(
