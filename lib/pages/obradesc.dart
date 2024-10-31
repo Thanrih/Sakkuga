@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/assets/my_button.dart';
@@ -31,11 +31,35 @@ class _ObraDescPageState extends State<ObraDescPage> {
     return response;
   }
 
+  Future<bool> _insertObra(String id) async {
+    final userId = supabase.auth.currentUser ?.id;
+
+    if (userId == null) {
+      // Trate o caso em que o usuário não está autenticado
+      print('Usuário não autenticado');
+      return false; // Retorne false se o usuário não estiver autenticado
+    }
+
+    final response = await supabase
+        .from('Obras Curtidas')
+        .insert({
+      'id': id,
+      'userId': userId,
+    });
+    if (response.error != null) {
+      // Trate o erro aqui
+      print('Error inserting obra: ${response.error!.message}');
+      return false; // Retorne false em caso de erro
+    } else {
+      // Inserção bem-sucedida
+      print('Obra inserida com sucesso!');
+      return true; // Retorne true em caso de sucesso
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final String id = (ModalRoute.of(context)?.settings.arguments as int).toString();
-
-    // Initialize the future in the build method
     _future = _fetchImageUrl(id);
 
     return Scaffold(
@@ -64,7 +88,6 @@ class _ObraDescPageState extends State<ObraDescPage> {
 
           return Stack(
             children: [
-              // Imagem de fundo responsiva
               if (imageUrl != null)
                 Positioned(
                   top: 0,
@@ -102,7 +125,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.3,
-                            decoration: BoxDecoration(
+                            decoration: BoxDecoration (
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: ClipRRect(
@@ -173,14 +196,22 @@ class _ObraDescPageState extends State<ObraDescPage> {
                         const SizedBox(height: 20.0),
                       ],
                     ),
-                    const Wrap(
-                      alignment: WrapAlignment.center,
-                      spacing: 10.0,
-                      runSpacing: 10.0,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
-                        Icon(CupertinoIcons.book_fill, color: Colors.white, size: 30.0),
-                        Icon(CupertinoIcons.heart, color: Colors.white, size: 30.0),
-                        Icon(CupertinoIcons.captions_bubble, color: Colors.white, size: 30.0),
+                        const Icon(CupertinoIcons.book_fill, color: Colors.white, size: 30.0),
+                        const SizedBox(width: 10,),
+                        LikeButton(
+                          onTap: (isLiked) async {
+                            final success = await _insertObra(id);
+                            return success; // Retorne o resultado da inserção
+                          },
+                          bubblesColor: const BubblesColor(dotPrimaryColor: Colors.red, dotSecondaryColor: Colors.red),
+                          size: 30,
+                        ),
+                        const SizedBox(width: 10,),
+                        const Icon(CupertinoIcons.captions_bubble, color: Colors.white, size: 30.0),
                       ],
                     ),
                     const SizedBox(height: 20.0),

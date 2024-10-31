@@ -20,6 +20,7 @@ class _SavedPageState extends State<SavedPage> {
     return List<Map<String, dynamic>>.from(response);
   }
 
+
   @override
   Widget build(BuildContext context) {
     final favorites = context.watch<FavoritesProvider>().favorites;
@@ -33,6 +34,7 @@ class _SavedPageState extends State<SavedPage> {
             const SizedBox(height: 20,),
             CupertinoSearchTextField(
               style: const TextStyle(color: Colors.white),
+
               onChanged: (value) {
                 setState(() {
                   searchQuery = value.toLowerCase(); // Atualiza a consulta de pesquisa

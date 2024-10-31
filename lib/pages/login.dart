@@ -18,16 +18,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Verifica se o usuário já está logado
-    final user = supabase.auth.currentUser ;
-    if (user != null) {
-      // Se o usuário já estiver logado, redireciona para a tela principal
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const MyApp()),
-        );
-      });
-    }
 
     void userSignIn() async {
       final email = emailController.text;
@@ -61,8 +51,8 @@ class LoginPage extends StatelessWidget {
       try {
         // Realiza o login com Supabase
         await supabase.auth.signInWithPassword(
-          password: passwordController.text,
-          email: emailController.text,
+          password: passwordController.text.trim(),
+          email: emailController.text.trim(),
         );
         // Se o login for bem-sucedido, redireciona para a tela principal
         Navigator.pushReplacement(
@@ -85,13 +75,19 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent, // Deixa a cor de fundo transparente
+        elevation: 0, // Remove a sombra da AppBar
+        iconTheme: const IconThemeData(color: Colors.white), // Define a cor dos ícones
+        toolbarOpacity: 1, // Define a opacidade da AppBar
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 3),
+                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 3),
                   child: const Text(
                     'Login',
                     style: TextStyle(

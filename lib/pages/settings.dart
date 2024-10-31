@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ConfigPage extends StatelessWidget {
   const ConfigPage({super.key});
@@ -74,7 +75,26 @@ class ConfigPage extends StatelessWidget {
                 // Ação ao tocar na opção
               },
             ),
-            // Adicione mais ListTile para outras opções
+            ElevatedButton(
+              onPressed: () {
+                Supabase.instance.client.auth.signOut();
+                print('User logged out successfully.');
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 40),
+                backgroundColor: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: const Text(
+                'Quit',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
         ),
       ),
