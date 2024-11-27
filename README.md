@@ -1,3 +1,2 @@
 # Sakkuga Captors
-
-A app to read animated webtoons. 
+App to read animated webtoons. 
