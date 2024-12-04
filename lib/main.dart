@@ -52,8 +52,8 @@ class _MyAppState extends State<MyApp> {
   // Lista de páginas mapeadas pela navbar
   final List<Widget> _pages = [
     const MyHomePage(),
-    const HistoryPage(),
     const SavedPage(),
+    const HistoryPage(),
     const ConfigPage(),
   ];
 
@@ -90,14 +90,14 @@ class _MyAppState extends State<MyApp> {
                 label: 'Home',
               ),
               NavigationDestination(
-                icon: Icon(Icons.history_edu_outlined, color: Colors.white),
-                selectedIcon: Icon(Icons.history_edu_outlined, color: Colors.black),
-                label: 'Histórico',
-              ),
-              NavigationDestination(
                 icon: Icon(Icons.save, color: Colors.white),
                 selectedIcon: Icon(Icons.save, color: Colors.black),
                 label: 'Salvos',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.history_edu_outlined, color: Colors.white),
+                selectedIcon: Icon(Icons.history_edu_outlined, color: Colors.black),
+                label: 'Histórico',
               ),
               NavigationDestination(
                 icon: Icon(Icons.settings, color: Colors.white),

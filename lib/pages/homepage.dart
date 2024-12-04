@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sakugaacaptors/assets/carrousselImages.dart';
+import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
+import 'package:sakugaacaptors/assets/carroussel/carrousselImages.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:sakugaacaptors/assets/card.dart';
+import 'package:sakugaacaptors/assets/card/card.dart';
 import 'login.dart';
 import 'package:horizontal_list_view/horizontal_list_view.dart';
 
@@ -131,14 +132,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         crossAxisSpacing: 10,
                         children: dataList.map((data) {
                           return MangaCard(
-                            imageUrl: data['ImageUrl'],
-                            title: data['Name'],
-                            textSize: 16,
-                            textPadding: 0,
-                            desc: '',
-                            id: data['id'],
-                            obraGenres: data['genres'],
-                            views: data['views'],
+                            viewModel: MangaViewModel(
+                              id: data['id'],
+                              imageUrl: data['ImageUrl'],
+                              title: data['Name'],
+                              desc: '',
+                              obraGenres: data['genres'],
+                              views: data['views'],
+                            ),
                           );
                         }).toList(),
                       ),
@@ -183,14 +184,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         crossAxisSpacing: 10,
                         children: dataList.map((data) {
                           return MangaCard(
-                            imageUrl: data['ImageUrl'],
-                            title: data['Name'],
-                            textSize: 15,
-                            textPadding: 20,
-                            desc: '',
-                            id: data['id'],
-                            obraGenres: data['genres'],
-                            views: data['views'],
+                            viewModel: MangaViewModel(
+                              id: data['id'],
+                              imageUrl: data['ImageUrl'],
+                              title: data['Name'],
+                              desc: '',
+                              obraGenres: data['genres'],
+                              views: data['views'],
+                            ),
                           );
                         }).toList(),
                       ),

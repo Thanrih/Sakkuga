@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sakugaacaptors/assets/card.dart';
+import 'package:sakugaacaptors/assets/card/card.dart';
+import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
 import 'package:sakugaacaptors/pages/homepage.dart';
 import '../providers/provider_favorites.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,14 +33,17 @@ class _SavedPageState extends State<SavedPage> {
         child: Column(
           children: [
             const SizedBox(height: 20,),
-            CupertinoSearchTextField(
-              style: const TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: CupertinoSearchTextField(
+                style: const TextStyle(color: Colors.white),
 
-              onChanged: (value) {
-                setState(() {
-                  searchQuery = value.toLowerCase(); // Atualiza a consulta de pesquisa
-                });
-              },
+                onChanged: (value) {
+                  setState(() {
+                    searchQuery = value.toLowerCase(); // Atualiza a consulta de pesquisa
+                  });
+                },
+              ),
             ),
             const SizedBox(height: 20),
             Expanded( // Usando Expanded para permitir o scroll
@@ -83,16 +87,16 @@ class _SavedPageState extends State<SavedPage> {
                             return SizedBox(
                               width: 119, // Largura fixa para os cards
                               height: 200, // Altura fixa para os cards
-                              child: MangaCard(
-                                imageUrl: data['ImageUrl'],
-                                title: data['Name'],
-                                textSize: 16,
-                                textPadding: 0,
-                                desc: '',
-                                id: data['id'],
-                                obraGenres: data['genres'],
-                                views: data['views'],
-                              ),
+                              child:  MangaCard(
+                            viewModel: MangaViewModel(
+                            id: data['id'],
+                              imageUrl: data['ImageUrl'],
+                              title: data['Name'],
+                              desc: '',
+                              obraGenres: data['genres'],
+                              views: data['views'],
+                            ),
+                            )
                             );
                           }).toList(),
                         ),

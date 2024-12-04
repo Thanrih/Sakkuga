@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/assets/my_button.dart';
+import 'package:sakugaacaptors/assets/button/button_viewmodel.dart';
+import 'package:sakugaacaptors/assets/button/my_button.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -35,9 +36,8 @@ class _ObraDescPageState extends State<ObraDescPage> {
     final userId = supabase.auth.currentUser ?.id;
 
     if (userId == null) {
-      // Trate o caso em que o usuário não está autenticado
       print('Usuário não autenticado');
-      return false; // Retorne false se o usuário não estiver autenticado
+      return false; // Return false if the user is not authenticated
     }
 
     final response = await supabase
@@ -47,13 +47,11 @@ class _ObraDescPageState extends State<ObraDescPage> {
       'userId': userId,
     });
     if (response.error != null) {
-      // Trate o erro aqui
       print('Error inserting obra: ${response.error!.message}');
-      return false; // Retorne false em caso de erro
+      return false; // Return false in case of error
     } else {
-      // Inserção bem-sucedida
       print('Obra inserida com sucesso!');
-      return true; // Retorne true em caso de sucesso
+      return true; // Return true in case of success
     }
   }
 
@@ -125,7 +123,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.3,
-                            decoration: BoxDecoration (
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: ClipRRect(
@@ -133,7 +131,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
                               child: Image.network(
                                 imageUrl,
                                 fit: BoxFit.cover,
-                                width: double.infinity,
+                                width: double .infinity,
                                 height: double.infinity,
                               ),
                             ),
@@ -198,14 +196,13 @@ class _ObraDescPageState extends State<ObraDescPage> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-
                       children: [
                         const Icon(CupertinoIcons.book_fill, color: Colors.white, size: 30.0),
                         const SizedBox(width: 10,),
                         LikeButton(
                           onTap: (isLiked) async {
                             final success = await _insertObra(id);
-                            return success; // Retorne o resultado da inserção
+                            return success; // Return the result of the insertion
                           },
                           bubblesColor: const BubblesColor(dotPrimaryColor: Colors.red, dotSecondaryColor: Colors.red),
                           size: 30,
@@ -216,16 +213,17 @@ class _ObraDescPageState extends State<ObraDescPage> {
                     ),
                     const SizedBox(height: 20.0),
                     MyButton(
-                      onTap: () => Navigator.pushNamed(context, 'pages/caps', arguments: id),
-                      buttonText: 'Ler',
-                      width: 170.0,
-                      height: 60.0,
-                      colorAway: Colors.white,
-                      colorPressed: Colors.black,
-                      borderColorAway: Colors.black,
-                      borderColorPressed: Colors.white,
+                      viewModel: ButtonViewModel(
+                        onTap: () => Navigator.pushNamed(context, 'pages/caps', arguments: id), // Pass the navigation function directly
+                        buttonText: 'Ler', // Updated button text
+                        width: 150,
+                        height: 70,
+                        colorAway: Colors.white,
+                        colorPressed: Colors.black,
+                        borderColorAway: Colors.black,
+                        borderColorPressed: Colors.white,
+                      ),
                     ),
-                    const SizedBox(height: 10.0),
                   ],
                 ),
               ),

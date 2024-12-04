@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sakugaacaptors/assets/button/button_viewmodel.dart';
 
 class MyButton extends StatefulWidget {
-  final Function()? onTap;
-  final String buttonText;
-  final double width; // Largura do botão
-  final double height; // Altura do botão
-  final Color colorAway;
-  final Color colorPressed;
-  final Color borderColorAway;
-  final Color borderColorPressed;
-
+  final ButtonViewModel viewModel;
 
   const MyButton({
     super.key,
-    required this.onTap,
-    required this.buttonText,
-    required this.width,
-    required this.height,
-    required this.colorAway,
-    required this.colorPressed,
-    required this.borderColorAway,
-    required this.borderColorPressed,
+    required this.viewModel,
   });
 
   @override
@@ -31,15 +17,15 @@ class _MyButtonState extends State<MyButton> {
   bool _isPressed = false;
 
   Color _getBackgroundColor() {
-    return _isPressed ? widget.colorPressed : widget.colorAway;
+    return _isPressed ? widget.viewModel.colorPressed : widget.viewModel.colorAway;
   }
 
   Color _getTextColor() {
-    return _isPressed ? widget.colorAway : widget.colorPressed;
+    return _isPressed ? widget.viewModel.colorAway : widget.viewModel.colorPressed;
   }
 
   Color _getBorderColor() {
-    return _isPressed ? widget.colorAway : widget.colorPressed;
+    return _isPressed ? widget.viewModel.colorAway : widget.viewModel.colorPressed;
   }
 
   @override
@@ -54,8 +40,8 @@ class _MyButtonState extends State<MyButton> {
         setState(() {
           _isPressed = false;
         });
-        if (widget.onTap != null) {
-          widget.onTap!();
+        if (widget.viewModel.onTap != null) {
+          widget.viewModel.onTap!();
         }
       },
       onTapCancel: () {
@@ -64,8 +50,8 @@ class _MyButtonState extends State<MyButton> {
         });
       },
       child: Container(
-        width: widget.width, // Definindo a largura do botão
-        height: widget.height, // Definindo a altura do botão
+        width: widget.viewModel.width, // Setting the button width
+        height: widget.viewModel.height, // Setting the button height
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
@@ -75,7 +61,7 @@ class _MyButtonState extends State<MyButton> {
         ),
         child: Center(
           child: Text(
-            widget.buttonText,
+            widget.viewModel.buttonText,
             style: TextStyle(
               color: _getTextColor(),
               fontWeight: FontWeight.bold,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/assets/card.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/assets/card/card.dart';
+import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -14,8 +16,7 @@ class _HistoryPageState extends State<HistoryPage> {
   String searchQuery = '';
 
   Future<List<Map<String, dynamic>>> _data() async {
-    final userId = supabase.auth.currentUser?.id;
-    print(userId);
+    final userId = supabase.auth.currentUser ?.id;
     if (userId == null) {
       print('Usuário não autenticado.');
       return [];
@@ -28,15 +29,12 @@ class _HistoryPageState extends State<HistoryPage> {
           .select('id_history')
           .eq('userId', userId);
 
-      print(historyResponse);
-
       // Extrai os IDs das obras do histórico.
       final obraIds = historyResponse.map((history) => history['id_history'] as int).toList();
       if (obraIds.isEmpty) {
         print('Nenhuma obra encontrada no histórico.');
         return [];
       }
-      print(obraIds.length);
 
       // Formata os IDs em formato SQL.
       final obraIdsFormatted = '(${obraIds.join(",")})';
@@ -55,7 +53,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = supabase.auth.currentUser;
+    final user = supabase.auth.currentUser ;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -64,13 +62,16 @@ class _HistoryPageState extends State<HistoryPage> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            CupertinoSearchTextField(
-              style: const TextStyle(color: Colors.white),
-              onChanged: (value) {
-                setState(() {
-                  searchQuery = value.toLowerCase();
-                });
-              },
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: CupertinoSearchTextField(
+                style: const TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  setState(() {
+                    searchQuery = value.toLowerCase();
+                  });
+                },
+              ),
             ),
             const SizedBox(height: 20),
             Expanded(
@@ -119,33 +120,35 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Widget _buildNotLoggedInWidget() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Você não está logado',
-          style: TextStyle(color: Colors.white),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, 'pages/login');
-          },
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(200, 40),
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Você não está logado',
+            style: TextStyle(color: Colors.white),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, 'pages/login');
+            },
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(200, 40),
+              backgroundColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-          child: const Text(
-            'Login',
-            style: TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -187,14 +190,14 @@ class _HistoryPageState extends State<HistoryPage> {
               width: 119,
               height: 200,
               child: MangaCard(
-                imageUrl: data['ImageUrl'],
-                title: data['Name'],
-                textSize: 16,
-                textPadding: 0,
-                desc: '',
-                id: data['id'],
-                obraGenres: data['genres'],
-                views: data['views'],
+                viewModel: MangaViewModel(
+                  id: data['id'],
+                  imageUrl: data['ImageUrl'],
+                  title: data['Name'],
+                  desc: '',
+                  obraGenres: data['genres'],
+                  views: data['views'],
+                ),
               ),
             );
           }).toList(),

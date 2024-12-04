@@ -1,35 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
 
 class MangaCard extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String badge;
-  final String desc;
-  final double textPadding;
-  final double textSize;
-  final int id;
-  final int views;
-  final List<dynamic> obraGenres;
+  final MangaViewModel viewModel;
 
   const MangaCard({
     Key? key,
-    required this.id,
-    this.textPadding = 0,
-    required this.imageUrl,
-    this.title = '',
-    this.textSize = 0,
-    this.badge = '',
-    required this.desc,
-    required this.obraGenres,
-    required this.views,
+    required this.viewModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, 'pages/desc', arguments: id);
-        // Use route name string
+        Navigator.pushNamed(context, 'pages/desc', arguments: viewModel.id);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -41,8 +25,8 @@ class MangaCard extends StatelessWidget {
           children: [
             Flexible(
               child: Image.network(
-                imageUrl.isNotEmpty
-                    ? imageUrl
+                viewModel.imageUrl.isNotEmpty
+                    ? viewModel.imageUrl
                     : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
                 fit: BoxFit.cover,
                 height: 200,
@@ -52,31 +36,33 @@ class MangaCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(1, 8, 0, 2),
               child: Text(
-                title,
+                viewModel.title,
                 style: const TextStyle(fontSize: 16, color: Colors.white),
-                maxLines: 1, // Limita a uma linha
-                overflow: TextOverflow.ellipsis, // Adiciona "..." se o texto for muito longo
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                obraGenres.isNotEmpty ? obraGenres[0] : '',
+                viewModel.firstGenre,
                 style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child:
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Icon(Icons.visibility, color: Colors.grey, size: 14),
-                      const SizedBox(width: 4),
-                      Text('$views', style: const TextStyle(color: Colors.white, fontSize: 10)),
-                    ],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Icon(Icons.visibility, color: Colors.grey, size: 14),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${viewModel.views}',
+                    style: const TextStyle(color: Colors.white, fontSize: 10),
                   ),
+                ],
               ),
+            ),
           ],
         ),
       ),

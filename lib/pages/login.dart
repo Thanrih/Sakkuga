@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/assets/my_button.dart';
-import 'package:sakugaacaptors/assets/my_textfield.dart';
-import '../assets/square.dart';
+import 'package:sakugaacaptors/assets/button/button_viewmodel.dart';
+import 'package:sakugaacaptors/assets/button/my_button.dart';
+import 'package:sakugaacaptors/assets/textfield/my_textfield.dart';
+import '../assets/square/square.dart';
 import '../main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -136,16 +137,18 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                MyButton(
-                  onTap: userSignIn,
-                  buttonText: ' Login',
-                  width: 150,
-                  height: 70,
-                  colorAway: Colors.white,
-                  colorPressed: Colors.black,
-                  borderColorAway: Colors.black,
-                  borderColorPressed: Colors.white,
-                ),
+            MyButton(
+              viewModel: ButtonViewModel(
+                onTap: userSignIn, // Pass the userSignIn function directly
+                buttonText: 'Login',
+                width: 150,
+                height: 70,
+                colorAway: Colors.white,
+                colorPressed: Colors.black,
+                borderColorAway: Colors.black,
+                borderColorPressed: Colors.white,
+              ),
+            ),
                 const SizedBox(height: 10),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.0),

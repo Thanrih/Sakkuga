@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/assets/my_button.dart';
-import 'package:sakugaacaptors/assets/my_textfield.dart';
+import 'package:sakugaacaptors/assets/button/button_viewmodel.dart';
+import 'package:sakugaacaptors/assets/button/my_button.dart';
+import 'package:sakugaacaptors/assets/textfield/my_textfield.dart';
 import 'package:sakugaacaptors/pages/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -161,17 +162,18 @@ class RegisterPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                MyButton(
-                  onTap: userSignIn,
-                  buttonText: 'Finalizar',
-                  width: 150,
-                  height: 50,
-                  colorAway: Colors.white,
-                  colorPressed: Colors.black,
-                  borderColorAway: Colors.black,
-                  borderColorPressed: Colors.white,
-                ),
-                const SizedBox(height: 80),
+            MyButton(
+              viewModel: ButtonViewModel(
+                onTap: userSignIn, // Pass the navigation function directly
+                buttonText: 'Registrar', // Updated button text
+                width: 150,
+                height: 70,
+                colorAway: Colors.white,
+                colorPressed: Colors.black,
+                borderColorAway: Colors.black,
+                borderColorPressed: Colors.white,
+              ),
+                )
               ],
             ),
           ),
