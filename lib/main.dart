@@ -12,14 +12,19 @@ import 'package:sakugaacaptors/providers/provider_favorites.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sakugaacaptors/pages/reading.dart';
 import 'package:sakugaacaptors/pages/profile.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Conexão com o Supabase
+  await dotenv.load(fileName: ".env");
+
+  // Conexão com o Supabase
   await Supabase.initialize(
-    url: 'https://xyewkeuvgrephjahsjds.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh5ZXdrZXV2Z3JlcGhqYWhzamRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQxMzYyNTQsImV4cCI6MjAyOTcxMjI1NH0.nPl6lx6KEUKtScJGPBanQBui5MmZtLHtdYJbJRyY2Fo',
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
   runApp(
@@ -60,6 +65,7 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sakuga Captors',
