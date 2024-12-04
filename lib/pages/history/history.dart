@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/assets/card/card.dart';
 import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/pages/homepage/homepage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HistoryPage extends StatefulWidget {

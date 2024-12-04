@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sakugaacaptors/pages/caps.dart';
-import 'package:sakugaacaptors/pages/history.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
-import 'package:sakugaacaptors/pages/login.dart';
-import 'package:sakugaacaptors/pages/obradesc.dart';
-import 'package:sakugaacaptors/pages/register.dart';
-import 'package:sakugaacaptors/pages/saved.dart';
-import 'package:sakugaacaptors/pages/settings.dart';
+import 'package:sakugaacaptors/pages/caps/caps.dart';
+import 'package:sakugaacaptors/pages/history/history.dart';
+import 'package:sakugaacaptors/pages/homepage/homepage.dart';
+import 'package:sakugaacaptors/pages/login/login.dart';
+import 'package:sakugaacaptors/pages/obradesc/obradesc.dart';
+import 'package:sakugaacaptors/pages/register/register.dart';
+import 'package:sakugaacaptors/pages/saved/saved.dart';
+import 'package:sakugaacaptors/pages/settings/settings.dart';
 import 'package:sakugaacaptors/providers/provider_favorites.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:sakugaacaptors/pages/reading.dart';
-import 'package:sakugaacaptors/pages/profile.dart';
+import 'package:sakugaacaptors/pages/reading/reading.dart';
+import 'package:sakugaacaptors/pages/profile/profile.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 

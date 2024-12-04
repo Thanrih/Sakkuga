@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/pages/reading.dart';
+import 'package:sakugaacaptors/pages/reading/reading.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Caps extends StatefulWidget {

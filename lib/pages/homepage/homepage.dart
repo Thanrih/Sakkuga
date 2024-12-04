@@ -4,7 +4,7 @@ import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
 import 'package:sakugaacaptors/assets/carroussel/carrousselImages.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sakugaacaptors/assets/card/card.dart';
-import 'login.dart';
+import '../login/login.dart';
 import 'package:horizontal_list_view/horizontal_list_view.dart';
 
 final supabase = Supabase.instance.client;

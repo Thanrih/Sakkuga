@@ -1,10 +1,7 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class MyTextField extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   final String hintText;
   final bool obscureText;
 
@@ -13,7 +10,7 @@ class MyTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.obscureText,
-});
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,8 @@ class MyTextField extends StatelessWidget {
           filled: true,
           labelText: hintText,
           labelStyle: TextStyle(color: Colors.grey.shade500),
-          contentPadding: const EdgeInsets.fromLTRB(12, 20, 5, 12), // Ajuste aqui o espaçamento desejado
+          floatingLabelBehavior: FloatingLabelBehavior.never, // Adicione esta linha
+          contentPadding: const EdgeInsets.fromLTRB(8, 20, 5, 8), // Ajuste aqui o espaçamento desejado
         ),
       ),
     );

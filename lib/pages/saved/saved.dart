@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sakugaacaptors/assets/card/card.dart';
 import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
-import '../providers/provider_favorites.dart';
+import 'package:sakugaacaptors/pages/homepage/homepage.dart';
+import '../../providers/provider_favorites.dart';
 import 'package:flutter/cupertino.dart';
 
 class SavedPage extends StatefulWidget {
