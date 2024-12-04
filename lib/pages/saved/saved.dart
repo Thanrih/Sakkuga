@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sakugaacaptors/assets/card/card.dart';
 import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
-import '../providers/provider_favorites.dart';
+import 'package:sakugaacaptors/pages/homepage/homepage.dart';
+import '../../providers/provider_favorites.dart';
 import 'package:flutter/cupertino.dart';
 
 class SavedPage extends StatefulWidget {
@@ -85,18 +85,18 @@ class _SavedPageState extends State<SavedPage> {
                           runSpacing: 8.0, // Espaçamento vertical entre as linhas
                           children: filteredData.map((data) {
                             return SizedBox(
-                              width: 119, // Largura fixa para os cards
-                              height: 200, // Altura fixa para os cards
-                              child:  MangaCard(
-                            viewModel: MangaViewModel(
-                            id: data['id'],
-                              imageUrl: data['ImageUrl'],
-                              title: data['Name'],
-                              desc: '',
-                              obraGenres: data['genres'],
-                              views: data['views'],
-                            ),
-                            )
+                                width: 119, // Largura fixa para os cards
+                                height: 200, // Altura fixa para os cards
+                                child:  MangaCard(
+                                  viewModel: MangaViewModel(
+                                    id: data['id'],
+                                    imageUrl: data['ImageUrl'],
+                                    title: data['Name'],
+                                    desc: '',
+                                    obraGenres: data['genres'],
+                                    views: data['views'],
+                                  ),
+                                )
                             );
                           }).toList(),
                         ),

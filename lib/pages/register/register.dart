@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/assets/button/button_viewmodel.dart';
 import 'package:sakugaacaptors/assets/button/my_button.dart';
 import 'package:sakugaacaptors/assets/textfield/my_textfield.dart';
-import 'package:sakugaacaptors/pages/login.dart';
+import 'package:sakugaacaptors/pages/login/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -123,9 +123,7 @@ class RegisterPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.network(
-                  'https://xyewkeuvgrephjahsjds.supabase.co/storage/v1/object/public/Icons/WhatsApp_Image_2024-05-06_at_21.10_2.png?t=2024-06-02T14%3A46%3A34.634Z',
-                  height: 200,
+                Image.asset('public/icons/icon.png',height: 200,
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 0),

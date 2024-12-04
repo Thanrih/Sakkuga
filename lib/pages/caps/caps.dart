@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/pages/reading.dart';
+import 'package:sakugaacaptors/pages/reading/reading.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Caps extends StatefulWidget {
@@ -92,15 +92,19 @@ class _CapsState extends State<Caps> {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                'Capítulo $chapter',
-                                style: const TextStyle(fontSize: 18, color: Colors.white),
+                              Icon(Icons.bookmark,color: Colors.white,weight: 20,),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Capítulo $chapter',
+                                  style: const TextStyle(fontSize: 18, color: Colors.white),
+                                ),
                               ),
                             ],
                           ),
                       Divider(
-                            thickness: 0.1,
-                            color: Colors.grey[400],
+                            thickness: 0.5,
+                            color: Colors.white,
                           )
                         ],
 

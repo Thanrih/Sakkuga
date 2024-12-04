@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/assets/card/card.dart';
 import 'package:sakugaacaptors/assets/card/card_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/pages/homepage/homepage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -127,25 +127,6 @@ class _HistoryPageState extends State<HistoryPage> {
           const Text(
             'Você não está logado',
             style: TextStyle(color: Colors.white),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, 'pages/login');
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(200, 40),
-              backgroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-            child: const Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
           ),
         ],
       ),

@@ -173,7 +173,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
                           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.9,
-                            height: 200,
+                            height: 120,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Text(
@@ -223,7 +223,9 @@ class _ObraDescPageState extends State<ObraDescPage> {
                         borderColorAway: Colors.black,
                         borderColorPressed: Colors.white,
                       ),
+
                     ),
+
                   ],
                 ),
               ),
