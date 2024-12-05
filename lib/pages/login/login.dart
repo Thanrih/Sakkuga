@@ -5,6 +5,7 @@ import 'package:sakugaacaptors/assets/button/my_button.dart';
 import 'package:sakugaacaptors/assets/textfield/my_textfield.dart';
 import 'package:sakugaacaptors/pages/homepage/homepage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../main.dart';
 
 final supabase = Supabase.instance.client;
 
@@ -57,7 +58,7 @@ class LoginPage extends StatelessWidget {
         // Se o login for bem-sucedido, redireciona para a tela principal
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const MyHomePage()),
+          MaterialPageRoute(builder: (context) => const MyApp()),
         );
       } catch (error) {
         // Mostra uma mensagem de erro caso o login falhe
